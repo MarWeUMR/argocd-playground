@@ -22,6 +22,8 @@ spec:
           value: NodePort
         - name: grafana.service.type
           value: NodePort
+        - name: prometheus.prometheusSpec.podMonitorNamespaceSelector
+          value: kafka
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
