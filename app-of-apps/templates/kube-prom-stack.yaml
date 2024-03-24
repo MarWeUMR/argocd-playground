@@ -18,6 +18,10 @@ spec:
       parameters:
         - name: nodeExporter.enabled
           value: "false"
+        - name: prometheus.service.type
+          value: NodePort
+        - name: grafana.service.type
+          value: NodePort
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
