@@ -13,6 +13,8 @@ spec:
     targetRevision: "{{ .Values.strimzi.targetRevision }}"
     chart: "{{ .Values.strimzi.chart }}"
   syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
     automated:
       selfHeal: true
       prune: true
