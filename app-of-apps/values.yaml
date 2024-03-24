@@ -20,4 +20,4 @@ kubePrometheusStack:
   destinationServer: https://kubernetes.default.svc
   repoURL: https://prometheus-community.github.io/helm-charts
   chart: kube-prometheus-stack
-  targetRevision: "release-0.13"
+  targetRevision: "57.1.1"
