@@ -3,8 +3,6 @@ kind: Application
 metadata:
   name: kafka-cluster
   namespace: "{{ .Values.kafkaCluster.namespace }}"
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
     namespace: "{{ .Values.kafkaCluster.namespace }}"
