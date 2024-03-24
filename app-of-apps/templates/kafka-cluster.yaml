@@ -15,6 +15,9 @@ spec:
     path: "{{ .Values.kafkaCluster.path }}"
     targetRevision: "{{ .Values.kafkaCluster.targetRevision }}"
   syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+      - PruneLast=true
     automated:
       selfHeal: true
       prune: true
