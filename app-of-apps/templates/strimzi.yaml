@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: strimzi
-  namespace: "{{ .Values.strimzi.namespace }}"
+  namespace: "{{ .Values.strimzi.applicationNamespace }}"
 spec:
   destination:
     namespace: "{{ .Values.strimzi.namespace }}"

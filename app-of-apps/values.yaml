@@ -1,12 +1,14 @@
 strimzi:
-  namespace: argocd
+  applicationNamespace: argocd
+  namespace: kafka
   destinationServer: https://kubernetes.default.svc
   repoURL: https://strimzi.io/charts/
   chart: strimzi-kafka-operator
   targetRevision: "0.40"
 
 kafkaCluster:
-  namespace: argocd
+  applicationNamespace: argocd
+  namespace: kafka
   destinationServer: https://kubernetes.default.svc
   repoURL: git@github.com/MarWeUMR/argocd-playground
   path: kafka
