@@ -1,5 +1,5 @@
 strimzi:
-  applicationNamespace: app-of-apps # this is, where the argocd application and parent app live
+  applicationNamespace: argocd # this is, where the argocd application and parent app live
   namespace: kafka # this is, where the kubernetes content lives, that is defined by the argo app
   destinationServer: https://kubernetes.default.svc
   repoURL: https://strimzi.io/charts/
@@ -7,7 +7,7 @@ strimzi:
   targetRevision: "0.40"
 
 kafkaCluster:
-  applicationNamespace: app-of-apps # this is, where the argocd application and parent app live
+  applicationNamespace: argocd # this is, where the argocd application and parent app live
   namespace: kafka # this is, where the kubernetes content lives, that is defined by the argo app
   destinationServer: https://kubernetes.default.svc
   repoURL: git@github.com/MarWeUMR/argocd-playground
