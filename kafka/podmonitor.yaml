@@ -65,6 +65,9 @@ spec:
   namespaceSelector:
     matchNames:
       - kafka
+  selector:
+    matchLabels:
+      kafka-metrics: 'true'
   podMetricsEndpoints:
     - path: /metrics
       port: tcp-prometheus

@@ -24,6 +24,11 @@ spec:
       inter.broker.protocol.version: "3.7"
     storage:
       type: ephemeral
+    template:
+      pod:
+        metadata:
+          labels:
+            kafka-metrics: "true"
     metricsConfig:
       type: jmxPrometheusExporter
       valueFrom:
@@ -46,6 +51,12 @@ spec:
   kafkaExporter:
     topicRegex: ".*"
     groupRegex: ".*"
+    template:
+      pod:
+        metadata:
+          labels:
+            kafka-metrics: "true"
+
 ---
 kind: ConfigMap
 apiVersion: v1
