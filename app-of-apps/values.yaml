@@ -23,5 +23,4 @@ kubePrometheusStack:
   targetRevision: "57.1.1"
   values: |
     prometheus-node-exporter:
-      hostRootFsMount:
         enabled: false
