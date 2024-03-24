@@ -1,5 +1,5 @@
 strimzi:
-  namespace: argocd
+  namespace: kafka
   destinationServer: https://kubernetes.default.svc
   repoURL: https://strimzi.io/charts/
   chart: strimzi-kafka-operator
