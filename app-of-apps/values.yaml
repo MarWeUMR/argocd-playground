@@ -21,6 +21,3 @@ kubePrometheusStack:
   repoURL: https://prometheus-community.github.io/helm-charts
   chart: kube-prometheus-stack
   targetRevision: "57.1.1"
-  values: |
-    prometheus-node-exporter:
-        enabled: false

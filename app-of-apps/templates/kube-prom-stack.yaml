@@ -15,7 +15,9 @@ spec:
     targetRevision: "{{ .Values.kubePrometheusStack.targetRevision }}"
     chart: "{{ .Values.kubePrometheusStack.chart }}"
     helm:
-      values: "{{ .Values.kubePrometheusStack.values }}"
+      parameters:
+        - name: nodeExporter.enabled
+          value: "false"
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
