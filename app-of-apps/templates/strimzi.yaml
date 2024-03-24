@@ -2,18 +2,18 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: strimzi
-  namespace: { { .Values.strimzi.namespace } }
+  namespace: "{{ .Values.strimzi.namespace }}"
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
-    namespace: { { .Values.strimzi.namespace } }
-    server: { { .Values.strimzi.destinationServer } }
+    namespace: "{{ .Values.strimzi.namespace }}"
+    server: "{{ .Values.strimzi.destinationServer }}"
   project: default
   source:
-    repoURL: { { .Values.strimzi.repoURL } }
-    targetRevision: { { .Values.strimzi.targetRevision } }
-    chart: { { .Values.strimzi.chart } }
+    repoURL: "{{ .Values.strimzi.repoURL }}"
+    targetRevision: "{{ .Values.strimzi.targetRevision }}"
+    chart: "{{ .Values.strimzi.chart }}"
   syncPolicy:
     automated:
       selfHeal: true
