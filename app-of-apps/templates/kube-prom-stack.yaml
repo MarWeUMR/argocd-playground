@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kube-prometheus-stack
+  namespace: "{{ .Values.kubePrometheusStack.applicationNamespace }}"
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: "{{ .Values.kubePrometheusStack.namespace }}"
+    server: "{{ .Values.kubePrometheusStack.destinationServer }}"
+  project: default
+  source:
+    repoURL: "{{ .Values.kubePrometheusStack.repoURL }}"
+    targetRevision: "{{ .Values.kubePrometheusStack.targetRevision }}"
+    chart: "{{ .Values.kubePrometheusStack.chart }}"
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+      - PruneLast=true
+    automated:
+      selfHeal: true
+      prune: true

@@ -13,3 +13,11 @@ kafkaCluster:
   repoURL: git@github.com/MarWeUMR/argocd-playground
   path: kafka
   targetRevision: HEAD
+
+kubePrometheusStack:
+  applicationNamespace: argocd
+  namespace: monitoring
+  destinationServer: https://kubernetes.default.svc
+  repoURL: https://prometheus-community.github.io/helm-charts
+  chart: kube-prometheus-stack
+  targetRevision: HEAD
