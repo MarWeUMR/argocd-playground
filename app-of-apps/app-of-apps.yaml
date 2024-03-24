@@ -16,9 +16,6 @@ spec:
     server: https://kubernetes.default.svc
     namespace: app-of-apps
   syncPolicy:
-    syncOptions:
-      - CreateNamespace=true
-      - PruneLast=true
     automated:
       selfHeal: true
       prune: true
