@@ -14,6 +14,8 @@ spec:
     repoURL: "{{ .Values.kafkaCluster.repoURL }}"
     path: "{{ .Values.kafkaCluster.path }}"
     targetRevision: "{{ .Values.kafkaCluster.targetRevision }}"
+    directory:
+      recurse: true
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
