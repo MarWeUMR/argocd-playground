@@ -16,20 +16,16 @@ spec:
     chart: "{{ .Values.kubePrometheusStack.chart }}"
     helm:
       values: |
+        grafana:
+          service:
+            type: NodePort
         prometheus:
+          service:
+            type: NodePort
           prometheusSpec:
             podMonitorSelector:
               matchLabels:
                 monitorMe: "yesPlease"
-      parameters:
-        - name: prometheus.service.type
-          value: NodePort
-        - name: grafana.service.type
-          value: NodePort
-      # - name: prometheus.prometheusSpec.podMonitorSelectorNilUsesHelmValues
-      #   value: "false"
-      # - name: prometheus.prometheusSpec.serviceMonitorSelectorNilUsesHelmValues
-      #   value: "false"
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
