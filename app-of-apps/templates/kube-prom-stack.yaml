@@ -32,7 +32,6 @@ spec:
       - CreateNamespace=true
       - PruneLast=true
       - ServerSideApply=true
-      # - Replace=true # needed, because of weird issue with too long annotations...
     automated:
       selfHeal: true
       prune: true
