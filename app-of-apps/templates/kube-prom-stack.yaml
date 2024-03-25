@@ -15,7 +15,7 @@ spec:
     targetRevision: "{{ .Values.kubePrometheusStack.targetRevision }}"
     chart: "{{ .Values.kubePrometheusStack.chart }}"
     helm:
-      valuesObject:
+      values: |
         prometheus:
           prometheusSpec:
             podMonitorSelector:
