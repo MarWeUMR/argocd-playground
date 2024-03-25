@@ -57,9 +57,6 @@ spec:
         operator: In
         values:
           ["Kafka", "KafkaConnect", "KafkaMirrorMaker", "KafkaMirrorMaker2"]
-  selector:
-    matchLabels:
-      kafka-metrics: 'true'
   podMetricsEndpoints:
     - path: /metrics
       port: tcp-prometheus

@@ -18,6 +18,10 @@ spec:
       valuesObject:
         prometheus:
           prometheusSpec:
+            serviceMonitorNamespaceSelector:
+              matchLabels:
+                - monitoring
+                - kafka
             podMonitorSelector:
               matchLabels:
                 kafka-metrics: "true"

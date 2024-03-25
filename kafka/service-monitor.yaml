@@ -1,0 +1,18 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: strimzi-kafka-service-monitor
+  labels:
+    app: strimzi-kafka
+spec:
+  selector:
+    matchLabels:
+      strimzi.io/kind: Kafka
+      strimzi.io/name: my-cluster
+  namespaceSelector:
+    matchNames:
+      - kafka
+  endpoints:
+    - port: tcp-prometheus
+      path: /metrics
+      interval: 30s
