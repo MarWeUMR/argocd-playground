@@ -6,7 +6,7 @@ metadata:
   name: kafka-dashboard-configmap
   namespace: monitoring
 data:
-  new-dashboard.json: |-
+  kafka-dashboard.json: |-
     {
     "__requires": [
       {

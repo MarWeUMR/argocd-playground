@@ -2,11 +2,11 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   labels:
-    grafana_dashboard: "2"
+    grafana_dashboard: "1"
   name: kafka-exporter-dashboard-configmap
   namespace: monitoring
 data:
-  new-dashboard.json: |-
+  kafka-exporter-dashboard.json: |-
     {
       "_comment": "Based on https://grafana.com/grafana/dashboards/7589",
       "__requires": [

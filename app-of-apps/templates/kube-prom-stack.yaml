@@ -17,6 +17,7 @@ spec:
     helm:
       values: |
         grafana:
+          adminPasword: BadPassword@1
           service:
             type: NodePort
         prometheus:
