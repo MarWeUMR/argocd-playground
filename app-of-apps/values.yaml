@@ -12,7 +12,7 @@ kafkaCluster:
   destinationServer: https://kubernetes.default.svc
   repoURL: git@github.com/MarWeUMR/argocd-playground
   path: kafka
-  targetRevision: HEAD
+  targetRevision: prom-stack
 
 kubePrometheusStack:
   applicationNamespace: argocd

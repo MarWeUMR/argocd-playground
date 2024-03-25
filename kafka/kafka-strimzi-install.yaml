@@ -2,6 +2,7 @@ apiVersion: kafka.strimzi.io/v1beta2
 kind: Kafka
 metadata:
   name: my-cluster
+  namespace: kafka
 spec:
   kafka:
     version: 3.7.0
@@ -28,7 +29,7 @@ spec:
       pod:
         metadata:
           labels:
-            kafka-metrics: "true"
+            monitorMe: "yesPlease"
     metricsConfig:
       type: jmxPrometheusExporter
       valueFrom:
@@ -39,6 +40,11 @@ spec:
     replicas: 3
     storage:
       type: ephemeral
+    template:
+      pod:
+        metadata:
+          labels:
+            monitorMe: "yesPlease"
     metricsConfig:
       type: jmxPrometheusExporter
       valueFrom:
@@ -55,16 +61,13 @@ spec:
       pod:
         metadata:
           labels:
-            kafka-metrics: "true"
-
+            monitorMe: "yesPlease"
 ---
 kind: ConfigMap
 apiVersion: v1
 metadata:
   name: kafka-metrics
   namespace: kafka
-  labels:
-    app: strimzi
 data:
   kafka-metrics-config.yml: |
     # See https://github.com/prometheus/jmx_exporter for more info about JMX Prometheus Exporter metrics
