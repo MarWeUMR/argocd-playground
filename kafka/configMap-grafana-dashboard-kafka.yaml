@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   labels:
     grafana_dashboard: "1"
-  name: new-dashboard-configmap
+  name: kafka-dashboard-configmap
   namespace: monitoring
 data:
   new-dashboard.json: |-
