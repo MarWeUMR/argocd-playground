@@ -15,6 +15,10 @@ spec:
     targetRevision: "{{ .Values.kubePrometheusStack.targetRevision }}"
     chart: "{{ .Values.kubePrometheusStack.chart }}"
     helm:
+      values: |
+        prometheus.prometheusSpec.podMonitorNamespaceSelector:
+          matchLabels:
+            kafka-metrics: "true"
       parameters:
         - name: nodeExporter.enabled
           value: "false"
@@ -22,8 +26,6 @@ spec:
           value: NodePort
         - name: grafana.service.type
           value: NodePort
-        - name: prometheus.prometheusSpec.podMonitorNamespaceSelector
-          value: kafka
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
