@@ -16,37 +16,38 @@ spec:
     spec:
       serviceAccountName: strimzi-canary
       containers:
-      - name: strimzi-canary
-        image: quay.io/strimzi/canary:0.6.0
-        env:
-          - name: KAFKA_BOOTSTRAP_SERVERS
-            value: my-cluster-kafka-bootstrap:9092
-          - name: RECONCILE_INTERVAL_MS
-            value: "10000"
-          - name: TLS_ENABLED
-            value: "false"
-        livenessProbe:
-          httpGet:
-            path: /liveness
-            port: 8080
-          initialDelaySeconds: 10
-          periodSeconds: 30
-        readinessProbe:
-          httpGet:
-            path: /readiness
-            port: 8080
-          initialDelaySeconds: 10
-          periodSeconds: 30    
-        resources:
-          limits:
-            memory: "64Mi"
-            cpu: "100m"
-          requests:
-            memory: "64Mi"
-            cpu: "100m"
-        ports:
-          - containerPort: 8080
-            name: metrics
-            protocol: TCP
+        - name: strimzi-canary
+          image: quay.io/strimzi/canary:0.6.0
+          env:
+            - name: KAFKA_BOOTSTRAP_SERVERS
+              value: my-cluster-kafka-plain-0:9092
+            - name: RECONCILE_INTERVAL_MS
+              value: "10000"
+            - name: TLS_ENABLED
+              value: "false"
+          livenessProbe:
+            httpGet:
+              path: /liveness
+              port: 8080
+            initialDelaySeconds: 10
+            periodSeconds: 30
+          readinessProbe:
+            httpGet:
+              path: /readiness
+              port: 8080
+            initialDelaySeconds: 10
+            periodSeconds: 30
+          resources:
+            limits:
+              memory: "64Mi"
+              cpu: "100m"
+            requests:
+              memory: "64Mi"
+              cpu: "100m"
+          ports:
+            - containerPort: 8080
+              name: metrics
+              protocol: TCP
   strategy:
     type: Recreate
+
