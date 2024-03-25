@@ -13,7 +13,7 @@ spec:
       monitorMe: yesPlease
   podMetricsEndpoints:
     - path: /metrics
-      port: tcp-prometheus
+      # port: tcp-prometheus
       relabelings:
         - separator: ;
           regex: __meta_kubernetes_pod_label_(strimzi_io_.+)
