@@ -21,3 +21,11 @@ kubePrometheusStack:
   repoURL: https://prometheus-community.github.io/helm-charts
   chart: kube-prometheus-stack
   targetRevision: "57.1.1"
+
+sealedSecrets:
+  applicationNamespace: argocd
+  namespace: bitnami
+  destinationServer: https://kubernetes.default.svc
+  repoURL: https://bitnami-labs.github.io/sealed-secrets
+  chart: sealed-secrets
+  targetRevision: "2.15.1"
