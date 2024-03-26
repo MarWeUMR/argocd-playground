@@ -29,3 +29,12 @@ sealedSecrets:
   repoURL: https://bitnami-labs.github.io/sealed-secrets
   chart: sealed-secrets
   targetRevision: "2.15.1"
+
+dataDog:
+  applicationNamespace: argocd
+  namespace: default
+  destinationServer: https://kubernetes.default.svc
+  repoURL: https://helm.datadoghq.com
+  path: datadog
+  chart: datadog-operator
+  targetRevision: "1.5.0"
