@@ -15,6 +15,27 @@ spec:
       repoURL: "{{ .Values.dataDog.chartURL }}"
       path: "{{ .Values.dataDog.path }}"
       targetRevision: "{{ .Values.dataDog.chartRevision }}"
+      helm:
+        values: |
+          datadog:
+            clusterName: default
+            processAgent:
+              enabled: true
+              processCollection: false
+
+            logs:
+              enabled: false
+              containerCollectAll: false
+
+            networkMonitoring:
+              enabled: false
+
+          agents:
+            image:
+              tag: latest
+              tagSuffix: jmx
+            process_config:
+              enabled: true
     - path: datadog
       repoURL: "{{ .Values.dataDog.repoURL }}"
       targetRevision: "{{ .Values.dataDog.targetRevision }}"
