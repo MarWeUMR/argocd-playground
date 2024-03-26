@@ -3,10 +3,6 @@ kind: DatadogAgent
 metadata:
   name: datadog
 spec:
-  override:
-    nodeAgent:
-      image:
-        jmxEnabled: true
   global:
     site: datadoghq.eu
     credentials:
