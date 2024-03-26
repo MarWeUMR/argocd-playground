@@ -32,7 +32,6 @@ spec:
             ad.datadoghq.com/kafka.check_names: '["kafka"]'
             ad.datadoghq.com/kafka.init_configs: '[{"is_jmx": true, "collect_default_metrics": true}]'
             ad.datadoghq.com/kafka.instances: '[{"host": "%%host%%","port":"9999"}]'
-            ad.datadoghq.com/kafka.logs: '[{"source":"kafka","service":"kafka"}]'
             ad.datadoghq.com/topic-operator.checks: |
               {
                 "strimzi": {
@@ -53,32 +52,6 @@ spec:
                   ]
                 }
               }
-            ad.datadoghq.com/kafka.checks: |
-              {
-                "kafka": {
-                  "init_config": {
-                    "is_jmx": true,
-                    "collect_default_metrics": true,
-                    "new_gc_metrics": true
-                  },
-                  "instances":[
-                    {
-                      "host": "%%host%%",
-                      "port": "9999"
-                    }
-                  ]
-                },
-                "kafka_consumer": {
-                  "init_config": {},
-                  "instances": [
-                    {
-                      "kafka_connect_str": "%%host%%:9092",
-                      "monitor_unlisted_consumer_groups": "true"
-                    }
-                  ]
-                }
-              }
-
           labels:
             monitorMe: "yesPlease"
     metricsConfig:
