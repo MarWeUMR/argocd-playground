@@ -37,6 +37,6 @@ dataDog:
   chartURL: https://helm.datadoghq.com
   repoURL: git@github.com/MarWeUMR/argocd-playground
   path: datadog
-  chart: datadog-operator
-  chartRevision: "1.5.0"
+  chart: datadog
+  chartRevision: "3.59.1"
   targetRevision: prom-stack
