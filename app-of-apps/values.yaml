@@ -34,7 +34,9 @@ dataDog:
   applicationNamespace: argocd
   namespace: default
   destinationServer: https://kubernetes.default.svc
-  repoURL: https://helm.datadoghq.com
+  chartURL: https://helm.datadoghq.com
+  repoURL: git@github.com/MarWeUMR/argocd-playground
   path: datadog
   chart: datadog-operator
-  targetRevision: "1.5.0"
+  chartRevision: "1.5.0"
+  targetRevision: prom-stack

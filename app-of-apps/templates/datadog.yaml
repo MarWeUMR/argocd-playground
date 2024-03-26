@@ -10,11 +10,14 @@ spec:
     namespace: "{{ .Values.dataDog.namespace }}"
     server: "{{ .Values.dataDog.destinationServer }}"
   project: default
-  source:
-    repoURL: "{{ .Values.dataDog.repoURL }}"
-    path: "{{ .Values.dataDog.path }}"
-    targetRevision: "{{ .Values.dataDog.targetRevision }}"
-    chart: "{{ .Values.dataDog.chart }}"
+  sources:
+    - chart: "{{ .Values.dataDog.chart }}"
+      repoURL: "{{ .Values.dataDog.chartURL }}"
+      path: "{{ .Values.dataDog.path }}"
+      targetRevision: "{{ .Values.dataDog.chartRevision }}"
+    - path: datadog
+      repoURL: "{{ .Values.dataDog.repoURL }}"
+      targetRevision: "{{ .Values.dataDog.targetRevision }}"
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
