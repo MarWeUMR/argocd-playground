@@ -24,7 +24,7 @@ kubePrometheusStack:
 
 sealedSecrets:
   applicationNamespace: argocd
-  namespace: bitnami
+  namespace: kube-system
   destinationServer: https://kubernetes.default.svc
   repoURL: https://bitnami-labs.github.io/sealed-secrets
   chart: sealed-secrets
