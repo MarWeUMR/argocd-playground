@@ -90,6 +90,11 @@ data:
     # See https://github.com/prometheus/jmx_exporter for more info about JMX Prometheus Exporter metrics
     lowercaseOutputName: true
     rules:
+    - pattern: kafka.producer<type=producer-metrics, client-id=(.+), node-id=(.+)><>([^:]+)
+      name: kafka_producer_$3
+      labels:
+        clientId: "$1"
+        nodeId: "$2"
     # Special cases and very specific rules
     - pattern: kafka.server<type=(.+), name=(.+), clientId=(.+), topic=(.+), partition=(.*)><>Value
       name: kafka_server_$1_$2
