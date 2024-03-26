@@ -31,7 +31,7 @@ spec:
           annotations:
             ad.datadoghq.com/kafka.check_names: '["kafka"]'
             ad.datadoghq.com/kafka.init_configs: '[{"is_jmx": true, "collect_default_metrics": true}]'
-            ad.datadoghq.com/kafka.instances: '[{"host": "%%host%%","port":"9999"}]'
+            ad.datadoghq.com/kafka.instances: '[{"host": "%%host%%","port":"9404", "path": "/metrics"}]'
             ad.datadoghq.com/topic-operator.checks: |
               {
                 "strimzi": {
