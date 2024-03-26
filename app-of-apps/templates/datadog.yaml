@@ -13,7 +13,6 @@ spec:
   sources:
     - chart: "{{ .Values.dataDog.chart }}"
       repoURL: "{{ .Values.dataDog.chartURL }}"
-      path: "{{ .Values.dataDog.path }}"
       targetRevision: "{{ .Values.dataDog.chartRevision }}"
       helm:
         values: |
