@@ -22,7 +22,7 @@ spec:
         path: "{{ .path.path }}"
         targetRevision: helmfile
         plugin:
-          name: argocd-lovely-plugin
+          name: lovely # using 'argocd-lovely-plugin-v1.0' as suggested in the docs did not work
       destination:
         server: https://kubernetes.default.svc
         namespace: "{{ .path.basename }}"
