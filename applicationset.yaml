@@ -9,7 +9,7 @@ spec:
         repoURL: https://github.com/MarWeUMR/argocd-playground
         revision: helmfile
         directories:
-          - path: /apps/*
+          - path: apps/*
   template:
     metadata:
       name: "{{ .path.basename }}"
