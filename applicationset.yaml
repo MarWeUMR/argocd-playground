@@ -4,6 +4,8 @@ metadata:
   name: argocd-playground
   namespace: argocd
 spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
   generators:
     - git:
         repoURL: https://github.com/MarWeUMR/argocd-playground
