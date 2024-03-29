@@ -1,0 +1,35 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: argocd-playground
+spec:
+  generators:
+    - git:
+        repoURL: https://github.com/MarWeUMR/argocd-playground
+        revision: helmfile
+        directories:
+          - path: /apps/*
+  template:
+    metadata:
+      name: "{{ .path.basename }}"
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/MarWeUMR/argocd-playground
+        path: "{{ .path.path }}"
+        targetRevision: HEAD
+        plugin:
+          name: argocd-lovely-plugin
+          env:
+            - name: ARGOCD_ENV_LOVELY_HELM_PATCH
+              value: |
+                [{ "op": "add", "path": "/hello-world/serviceAccount/name", "value": "{{name}}" }]
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: "{{ .path.basename }}"
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
