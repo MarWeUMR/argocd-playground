@@ -17,13 +17,9 @@ spec:
       source:
         repoURL: https://github.com/MarWeUMR/argocd-playground
         path: "{{ .path.path }}"
-        targetRevision: HEAD
+        targetRevision: helmfile
         plugin:
           name: argocd-lovely-plugin
-          env:
-            - name: ARGOCD_ENV_LOVELY_HELM_PATCH
-              value: |
-                [{ "op": "add", "path": "/hello-world/serviceAccount/name", "value": "{{name}}" }]
       destination:
         server: https://kubernetes.default.svc
         namespace: "{{ .path.basename }}"
