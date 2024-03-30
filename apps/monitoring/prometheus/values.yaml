@@ -12,8 +12,6 @@
 #
 prometheus:
   ingress:
-    annotations:
-      kubernetes.io/ingress.class: nginx
     enabled: true
     path: "/"
     hosts:
