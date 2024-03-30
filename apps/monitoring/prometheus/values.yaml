@@ -1,13 +1,9 @@
 alertmanager:
   enabled: false
 
-grafana:
-  ingress:
-    enabled: true
+grafana.ingress.enabled: true
 
 prometheus:
-  service:
-    type: NodePort
   ingress:
     enabled: true
 
