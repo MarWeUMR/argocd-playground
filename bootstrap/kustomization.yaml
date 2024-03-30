@@ -15,3 +15,8 @@ patches:
     target:
       kind: Deployment
       name: argocd-repo-server
+  # Change ArgoCD Server to NodePort
+  - path: argocd-server-patch.yaml
+    target:
+      kind: Service
+      name: argocd-server
