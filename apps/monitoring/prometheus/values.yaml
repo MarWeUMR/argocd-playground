@@ -1,5 +1,16 @@
-alertmanager.enabled: false
-grafana.ingress.enabled: true
+alertmanager:
+  enabled: false
+
+grafana:
+  ingress:
+    enabled: true
+
+prometheus:
+  service:
+    type: NodePort
+  ingress:
+    enabled: true
+
 kubeApiServer.enabled: false
 kubelet.enabled: false
 kubeControllerManager.enabled: false
@@ -9,4 +20,3 @@ kubeEtcd.enabled: false
 kubeScheduler.enabled: false
 kubeProxy.enabled: false
 kubeStateMetrics.enabled: false
-prometheus.ingress.enabled: true
