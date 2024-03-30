@@ -1,0 +1,9 @@
+repositories:
+  - name: prometheus-operator
+    url: https://github.com/prometheus-operator
+
+releases:
+  - name: prom-operator-release
+    namespace: monitoring
+    chart: prometheus-operator/prometheus-operator
+    version: 0.72.0
