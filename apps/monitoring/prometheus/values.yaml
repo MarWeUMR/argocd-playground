@@ -1,0 +1,11 @@
+alertmanager.enabled: false
+grafana.ingress.enabled: true
+kubeApiServer.enabled: false
+kubelet.enabled: false
+kubeControllerManager.enabled: false
+coreDNS.enabled: false
+kubeDNS.enabled: false
+kubeEtcd.enabled: false
+kubeScheduler.enabled: false
+kubeProxy.enabled: false
+prometheus.ingress.enabled: true
