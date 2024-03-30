@@ -1,19 +1,19 @@
 alertmanager:
   enabled: false
 
-grafana.ingress.enabled: true
-grafana.ingress.path: "/grafana"
-
-prometheus:
-  ingress:
-    enabled: true
-    path: "/prometheus"
+# grafana.ingress.enabled: true
+# grafana.ingress.path: "/grafana"
+#
+# prometheus:
+#   ingress:
+#     enabled: true
+#     path: "/prometheus"
 
 kubeApiServer.enabled: false
 kubelet.enabled: false
 kubeControllerManager.enabled: false
-coreDNS.enabled: false
-kubeDNS.enabled: false
+# coreDNS.enabled: false
+# kubeDNS.enabled: false
 kubeEtcd.enabled: false
 kubeScheduler.enabled: false
 kubeProxy.enabled: false
