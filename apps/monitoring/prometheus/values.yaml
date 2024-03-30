@@ -2,10 +2,12 @@ alertmanager:
   enabled: false
 
 grafana.ingress.enabled: true
+grafana.ingress.path: "/grafana"
 
 prometheus:
   ingress:
     enabled: true
+    path: "/prometheus"
 
 kubeApiServer.enabled: false
 kubelet.enabled: false
