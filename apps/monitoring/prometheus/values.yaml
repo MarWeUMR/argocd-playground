@@ -8,4 +8,5 @@ kubeDNS.enabled: false
 kubeEtcd.enabled: false
 kubeScheduler.enabled: false
 kubeProxy.enabled: false
+kubeStateMetrics.enabled: false
 prometheus.ingress.enabled: true
