@@ -1,13 +1,23 @@
 alertmanager:
   enabled: false
 
-grafana.ingress.enabled: true
-grafana.ingress.path: "/grafana"
+grafana:
+  ingress:
+    enabled: true
+    annotations:
+      kubernetes.io/ingress.class: nginx
+    path: "/"
+    hosts:
+      - grafana
 
 prometheus:
   ingress:
+    annotations:
+      kubernetes.io/ingress.class: nginx
     enabled: true
-    path: "/prometheus"
+    path: "/"
+    hosts:
+      - prometheus
 
 kubeApiServer.enabled: false
 kubelet.enabled: false
