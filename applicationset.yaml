@@ -25,7 +25,7 @@ spec:
           name: lovely # using 'argocd-lovely-plugin-v1.0' as suggested in the docs did not work
       destination:
         server: https://kubernetes.default.svc
-        namespace: "{{ .path.basename }}"
+        namespace: "{{ releases.namespace | default .path.basename }}" # use helmfiles namespace definition if available
       syncPolicy:
         automated:
           prune: true
