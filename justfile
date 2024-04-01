@@ -1,31 +1,33 @@
 # Justfile for managing a k3s cluster
 
-# Install k3s
+# Install k3s and configure kubectl
 install-k3s:
     # Download and execute the k3s installation script
     curl -sfL https://get.k3s.io | sh -
-    sudo cat /etc/rancher/k3s/k3s.yaml > ~/.kube/config
+    # Ensure the k3s kubeconfig is accessible for kubectl
+    sudo mkdir -p ~/.kube
+    sudo cp /etc/rancher/k3s/k3s.yaml ~/.kube/config
+    sudo chown $USER ~/.kube/config
+    echo "k3s installed and kubeconfig configured."
 
-
-# Reset cluster
+# Reset k3s cluster
 reset-k3s:
-    # Stop k3s service
+    # Gracefully stop k3s service
     sudo systemctl stop k3s || true
-    # Stop all k3s
+    # Stop all k3s-related processes
     /usr/local/bin/k3s-killall.sh || true
     # Uninstall k3s
     /usr/local/bin/k3s-uninstall.sh || true
-    # Optionally, clean up any remaining artifacts
+    # Attempt to unmount kubelet mounts if present
     sudo umount /var/lib/kubelet/* || true
     sudo umount /var/lib/kubelet || true
-    # Now try to remove /var/lib/kubelet again
+    # Cleanup remaining k3s artifacts
     sudo rm -rf /var/lib/kubelet
     sudo rm -rf /etc/rancher/k3s
     sudo rm -rf /var/lib/rancher/k3s
-    sudo rm -rf /var/lib/kubelet
+    echo "k3s cluster has been reset."
 
-# Check k3s status
+# Check k3s service status
 status-k3s:
-    # Check the status of the k3s service
+    # Display the current status of the k3s service
     sudo systemctl status k3s
-
