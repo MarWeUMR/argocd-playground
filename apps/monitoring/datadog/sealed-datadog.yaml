@@ -1,0 +1,13 @@
+---
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  name: datadog-secret
+  namespace: monitoring
+spec:
+  encryptedData:
+    api-key: AgAmlrj8FQpZiNVuMNNPt0/ciqoPAOzBDGhDFDJxeJ9Kumd5EpujVOoWMrtV+oFhD5bEkKcbSMQWR5XTHHd2DGLmzuIt+E3g2A5uYVNnRMyLU6dHQP2Ljo0rHk0rIQ1g+onVKJIQuGScoASf1xbd/m+cVw3mRMpB9fAxX99hJjTx5EJcD23no3WqxWfw3K8x7ReYvSyi5V7TYI4rX3fwrjxzBFCYAIsZtK3BfTjHxePJCQSklTFMuwrt5CYc0iNId75D19tmSUlWjfI8yEzfqUuXD67dJiNHWVs0zv81eZr6oBab5qA60Ubrd7fNFnThWqgHPfkIUculDa0YJPjyWZJZJvo8I1YDd2UIGD+J6WwgwguyNtZB3SlThr26F+UaY+Jiv/UTrv9WvVGqXQHdFEfBaf76LnU6GtWKM3lYdBPQjxxvxVBfkuGrU0EjGJ3uAxeNejERHyulk054O2/UyB6Eb9BolX28kZ3pLZJMXGx6IEpSrP2GEyS726w5bHIc3X893+BBHlfMNqRfizdvRwMVPNh1l8rjw+74CqjDiQCp7mmU/FgQfQAZYalWQ1MQXVl9qHdVDic0ZTGiq3YcNJdcsB7binKL2nkC2CPsgrTd4FdUaIbAxb88HOxY7rQCV7kbOTEhvgD47q3lwf7UC/CsaTP3km/71FQFMTgt7LZAcRjZqphJt9jbCrsvJMBR1jajmIWtbNDqREtSdym68E+mm0obclnbEh0zuTp4mE4TQQ==
+  template:
+    metadata:
+      name: datadog-secret
+      namespace: monitoring
