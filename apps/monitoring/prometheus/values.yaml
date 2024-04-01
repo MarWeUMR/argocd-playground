@@ -10,14 +10,15 @@
 #     hosts:
 #       - grafana
 #
-prometheus:
-  ingress:
-    enabled: true
-    annotations:
-      kubernetes.io/ingress.class: "nginx"
-    path: "/"
-    hosts:
-      - prometheus
+prometheus.service.type:
+  NodePort
+  # ingress:
+  #   enabled: true
+  #   annotations:
+  #     kubernetes.io/ingress.class: "nginx"
+  #   path: "/"
+  #   hosts:
+  #     - prometheus
 # kubeApiServer.enabled: false
 # kubelet.enabled: false
 # kubeControllerManager.enabled: false
