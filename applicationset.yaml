@@ -11,7 +11,9 @@ spec:
         repoURL: https://github.com/MarWeUMR/argocd-playground
         revision: helmfile
         directories:
-          - path: apps/*
+          - path: apps/kafka
+          - path: apps/monitoring/*
+          - path: apps/vault
   template:
     metadata:
       name: "{{ .path.basename }}"
