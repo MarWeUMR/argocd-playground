@@ -7,5 +7,6 @@ releases:
     namespace: hashicorp
     chart: hashicorp/vault
     version: 0.20.0
+    createNamespace: true
     values:
       - helm-vault-raft-values.yaml

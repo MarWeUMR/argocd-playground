@@ -13,7 +13,7 @@ spec:
         directories:
           - path: apps/kafka
           - path: apps/monitoring/*
-          - path: apps/vault
+          - path: apps/hashicorp
   template:
     metadata:
       name: "{{ .path.basename }}"
