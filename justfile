@@ -1,4 +1,5 @@
-# Justfile for managing a k3s cluster
+_default:
+  @just --choose
 
 # Install k3s and configure kubectl
 install-k3s:
@@ -31,3 +32,21 @@ reset-k3s:
 status-k3s:
     # Display the current status of the k3s service
     sudo systemctl status k3s
+
+
+bootstrap-argocd:
+    # Deploy argocd with kustomize
+    kubectl apply -k ./bootstrap
+    @echo ""
+
+    # Now we wait until the initial admin secret is ready. It will be printed to stdout
+    @while ! kubectl -n argocd get secret argocd-initial-admin-secret >/dev/null 2>&1; do echo "`date`: Waiting for argocd-initial-admin-secret to become available..."; sleep 2; done
+    @echo ""
+
+    # The secret is now available (already decoded):
+    @kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d; echo
+    @echo ""
+
+    # This is your argocd server URL
+    @echo https://$(hostname -i):`kubectl get -n argocd service/argocd-server -o jsonpath="{.spec.ports[?(@.name=='https')].nodePort}"`
+
