@@ -13,7 +13,7 @@ spec:
         directories:
           - path: apps/sealed-secrets
           - path: apps/kafka
-          - path: apps/monitoring/*
+          - path: apps/monitoring
   template:
     metadata:
       name: "{{ .path.basename }}"
