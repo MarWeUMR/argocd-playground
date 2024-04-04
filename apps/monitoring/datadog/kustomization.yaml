@@ -4,6 +4,3 @@ namespace: monitoring
 
 resources:
   - sealed-datadog.yaml
-
-generators:
-  - secret-generator.yaml
