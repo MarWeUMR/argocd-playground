@@ -9,7 +9,7 @@ releases:
     version: "3.59.1"
     values:
       - datadog:
-          apiKeyExistingSecret: datadog-secret
+          apiKeyExistingSecret: datadog-api-key
           site: datadoghq.eu
           clusterName: default
           processAgent:

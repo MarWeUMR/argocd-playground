@@ -11,9 +11,9 @@ spec:
         repoURL: https://github.com/MarWeUMR/argocd-playground
         revision: helmfile
         directories:
+          - path: apps/sealed-secrets
           - path: apps/kafka
           - path: apps/monitoring/*
-          - path: apps/hashicorp
   template:
     metadata:
       name: "{{ .path.basename }}"
