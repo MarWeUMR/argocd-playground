@@ -11,11 +11,15 @@ patches:
     target:
       kind: ConfigMap
       name: argocd-cm
+  - path: argocd-repo-server-ksops-patch.yaml
+    target:
+      kind: Deployment
+      name: argocd-repo-server
   - path: argocd-lovely-plugin.yaml
     target:
       kind: Deployment
       name: argocd-repo-server
-  # Change ArgoCD Server to NodePort
+    # Change ArgoCD Server to NodePort
   - path: argocd-server-patch.yaml
     target:
       kind: Service
