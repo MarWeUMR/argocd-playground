@@ -48,9 +48,8 @@
           rustToolchain.${pkgs.system}.rust-src
         }/lib/rustlib/src/rust/library";
         packages = [
-          rye 
+          rye
           uv
-          locust
           ];
       });
     });
