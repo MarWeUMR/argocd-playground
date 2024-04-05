@@ -1,0 +1,17 @@
+config:
+  organization:
+    name: "playground"
+
+  admin:
+    email: "a@b.com"
+    password: "initial"
+
+  database:
+    host: "postgres"
+    username: "conduktor_user"
+    password: "conduktor_password"
+    port: 5432
+    name: "conduktor_db"
+
+service:
+  type: NodePort
