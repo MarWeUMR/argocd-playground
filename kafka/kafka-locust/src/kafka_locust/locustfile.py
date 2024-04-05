@@ -164,7 +164,7 @@ class MyUser(AbstractKafkaProducer):
         self.client.producer.poll(1)  # Ensure the message is sent
 
         # Consume messages
-        # self.consumer.consume(timeout=1.0)
+        self.consumer.consume(timeout=1.0)
 
 
 if __name__ == "__main__":

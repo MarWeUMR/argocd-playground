@@ -35,21 +35,6 @@ spec:
                   "init_config": {
                     "is_jmx": true,
                     "collect_default_metrics": true,
-                    "conf": [
-                      {
-                        "include": {
-                          "domain": "kafka.server",
-                          "bean_regex": "kafka\\.server:type=BrokerTopicMetrics,name=MessagesInPerSec,topic=(.*?)(?:,|$)",
-                          "tags": { "topic": "$1" },
-                          "attribute": {
-                            "Value": {
-                              "alias": "kafka.topic.messages_in.rate",
-                              "metric_type": "count"
-                            }
-                          }
-                        }
-                      }
-                    ]
                   },
                   "instances": [
                     {
