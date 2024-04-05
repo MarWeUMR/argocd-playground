@@ -12,5 +12,5 @@ secretGenerator:
       labels:
         sealedsecrets.bitnami.com/sealed-secrets-key: active
     files:
-      - tls.crt=certy
+      - tls.crt=cert
       - tls.key=key

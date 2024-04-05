@@ -35,6 +35,10 @@ status-k3s:
 
 
 bootstrap-argocd:
+    # Before we can start, we need to decrypt the secrets
+    @sops --decrypt --age $(cat $SOPS_AGE_KEY_FILE |grep -oP "public key: \K(.*)") ./bootstrap/overlays/cert.enc > ./bootstrap/overlays/cert
+    @sops --decrypt --age $(cat $SOPS_AGE_KEY_FILE |grep -oP "public key: \K(.*)") ./bootstrap/overlays/key.enc > ./bootstrap/overlays/key
+
     # Deploy argocd with kustomize
     kubectl apply -k ./bootstrap/overlays/
     @echo ""
@@ -49,4 +53,3 @@ bootstrap-argocd:
 
     # This is your argocd server URL
     @echo https://$(hostname -i):`kubectl get -n argocd service/argocd-server -o jsonpath="{.spec.ports[?(@.name=='https')].nodePort}"`
-

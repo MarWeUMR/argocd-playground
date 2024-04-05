@@ -12,6 +12,7 @@ spec:
         revision: helmfile
         directories:
           - path: apps/kafka
+          - path: apps/sealed-secrets
           - path: apps/monitoring
   template:
     metadata:
