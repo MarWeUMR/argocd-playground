@@ -9,7 +9,7 @@ spec:
   generators:
     - git:
         repoURL: https://github.com/MarWeUMR/argocd-playground
-        revision: helmfile
+        revision: feat/kafka-traffic-generator
         directories:
           - path: apps/kafka
           - path: apps/sealed-secrets
@@ -22,7 +22,7 @@ spec:
       source:
         repoURL: https://github.com/MarWeUMR/argocd-playground
         path: "{{ .path.path }}"
-        targetRevision: helmfile
+        targetRevision: feat/kafka-traffic-generator
         plugin:
           name: lovely # using 'argocd-lovely-plugin-v1.0' as suggested in the docs did not work
       destination:
