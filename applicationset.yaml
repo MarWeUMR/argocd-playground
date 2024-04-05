@@ -1,0 +1,38 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: argocd-playground
+  namespace: argocd
+spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
+  generators:
+    - git:
+        repoURL: https://github.com/MarWeUMR/argocd-playground
+        revision: helmfile
+        directories:
+          - path: apps/kafka
+          - path: apps/sealed-secrets
+          - path: apps/monitoring
+  template:
+    metadata:
+      name: "{{ .path.basename }}"
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/MarWeUMR/argocd-playground
+        path: "{{ .path.path }}"
+        targetRevision: helmfile
+        plugin:
+          name: lovely # using 'argocd-lovely-plugin-v1.0' as suggested in the docs did not work
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: "{{ .path.basename }}" # use helmfiles namespace definition if available
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
+          - PruneLast=true
+          - ServerSideApply=true

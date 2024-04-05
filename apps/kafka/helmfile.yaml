@@ -1,0 +1,9 @@
+repositories:
+  - name: strimzi
+    url: https://strimzi.io/charts/
+
+releases:
+  - name: strimzi-kafka-release
+    namespace: kafka
+    chart: strimzi/strimzi-kafka-operator
+    version: 0.40

@@ -2,6 +2,7 @@ apiVersion: kafka.strimzi.io/v1beta2
 kind: Kafka
 metadata:
   name: my-cluster
+  namespace: kafka
 spec:
   kafka:
     version: 3.7.0
@@ -27,8 +28,40 @@ spec:
     template:
       pod:
         metadata:
+          annotations:
+            ad.datadoghq.com/kafka.checks: |
+              {
+                "kafka": {
+                  "init_config": {
+                    "is_jmx": true,
+                    "collect_default_metrics": true,
+                    "conf": [
+                      {
+                        "include": {
+                          "domain": "kafka.server",
+                          "bean_regex": "kafka\\.server:type=BrokerTopicMetrics,name=MessagesInPerSec,topic=(.*?)(?:,|$)",
+                          "tags": { "topic": "$1" },
+                          "attribute": {
+                            "Value": {
+                              "alias": "kafka.topic.messages_in.rate",
+                              "metric_type": "count"
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "instances": [
+                    {
+                      "host": "%%host%%",
+                      "port": "9999"
+                    }
+                  ]
+                }
+              }
           labels:
-            kafka-metrics: "true"
+            monitorMe: "yesPlease"
+    jmxOptions: {}
     metricsConfig:
       type: jmxPrometheusExporter
       valueFrom:
@@ -39,6 +72,11 @@ spec:
     replicas: 3
     storage:
       type: ephemeral
+    template:
+      pod:
+        metadata:
+          labels:
+            monitorMe: "yesPlease"
     metricsConfig:
       type: jmxPrometheusExporter
       valueFrom:
@@ -55,21 +93,23 @@ spec:
       pod:
         metadata:
           labels:
-            kafka-metrics: "true"
-
+            monitorMe: "yesPlease"
 ---
 kind: ConfigMap
 apiVersion: v1
 metadata:
   name: kafka-metrics
   namespace: kafka
-  labels:
-    app: strimzi
 data:
   kafka-metrics-config.yml: |
     # See https://github.com/prometheus/jmx_exporter for more info about JMX Prometheus Exporter metrics
     lowercaseOutputName: true
     rules:
+    - pattern: kafka.producer<type=producer-metrics, client-id=(.+), node-id=(.+)><>([^:]+)
+      name: kafka_producer_$3
+      labels:
+        clientId: "$1"
+        nodeId: "$2"
     # Special cases and very specific rules
     - pattern: kafka.server<type=(.+), name=(.+), clientId=(.+), topic=(.+), partition=(.*)><>Value
       name: kafka_server_$1_$2

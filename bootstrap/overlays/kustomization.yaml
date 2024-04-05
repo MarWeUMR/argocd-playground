@@ -1,0 +1,16 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - "../base/"
+
+secretGenerator:
+  - name: sealed-secrets-predeployed
+    namespace: kube-system
+    type: kubernetes.io/tls
+    options:
+      labels:
+        sealedsecrets.bitnami.com/sealed-secrets-key: active
+    files:
+      - tls.crt=cert
+      - tls.key=key

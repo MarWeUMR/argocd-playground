@@ -1,0 +1,30 @@
+# alertmanager:
+#   enabled: false
+
+# grafana:
+#   ingress:
+#     enabled: true
+#     annotations:
+#       kubernetes.io/ingress.class: nginx
+#     path: "/"
+#     hosts:
+#       - grafana
+#
+prometheus.service.type:
+  NodePort
+  # ingress:
+  #   enabled: true
+  #   annotations:
+  #     kubernetes.io/ingress.class: "nginx"
+  #   path: "/"
+  #   hosts:
+  #     - prometheus
+# kubeApiServer.enabled: false
+# kubelet.enabled: false
+# kubeControllerManager.enabled: false
+# # coreDNS.enabled: false
+# # kubeDNS.enabled: false
+# kubeEtcd.enabled: false
+# kubeScheduler.enabled: false
+# kubeProxy.enabled: false
+# kubeStateMetrics.enabled: false

@@ -1,0 +1,31 @@
+repositories:
+  - name: datadog
+    url: https://helm.datadoghq.com
+
+releases:
+  - name: datadog-release
+    namespace: monitoring
+    chart: datadog/datadog
+    version: "3.59.1"
+    values:
+      - datadog:
+          apiKeyExistingSecret: datadog-api-key
+          site: datadoghq.eu
+          clusterName: default
+          processAgent:
+            enabled: true
+            processCollection: false
+
+          logs:
+            enabled: false
+            containerCollectAll: false
+
+          networkMonitoring:
+            enabled: false
+
+      - agents:
+          image:
+            tag: latest
+            tagSuffix: jmx
+          process_config:
+            enabled: true
