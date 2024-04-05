@@ -36,7 +36,7 @@ status-k3s:
 
 bootstrap-argocd:
     # Deploy argocd with kustomize
-    kubectl apply -k ./bootstrap
+    kubectl apply -k ./bootstrap/overlays/
     @echo ""
 
     # Now we wait until the initial admin secret is ready. It will be printed to stdout
