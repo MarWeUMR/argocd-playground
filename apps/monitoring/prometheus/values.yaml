@@ -1,1 +1,3 @@
-prometheus.service.type: NodePort
+prometheus:
+  service:
+    type: NodePort
