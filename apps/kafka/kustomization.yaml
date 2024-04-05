@@ -5,3 +5,5 @@ resources:
   - strimzi-install-kafka-cluster.yaml
   - my-topic.yaml
   - pod-monitor.yaml
+  - configMap-grafana-dashboard-kafka.yaml
+  - configMap-grafana-dashboard-kafka-exporter.yaml
