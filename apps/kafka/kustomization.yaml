@@ -4,3 +4,4 @@ kind: Kustomization
 resources:
   - strimzi-install-kafka-cluster.yaml
   - my-topic.yaml
+  - pod-monitor.yaml

@@ -1,3 +1,11 @@
 prometheus:
   service:
     type: NodePort
+  prometheusSpec:
+    podMonitorSelector:
+      matchLabels:
+        monitorMe: "yesPlease"
+grafana:
+  adminPassword: BadPassword@1
+  service:
+    type: NodePort
