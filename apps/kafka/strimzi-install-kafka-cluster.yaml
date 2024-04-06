@@ -31,7 +31,7 @@ spec:
           annotations:
             ad.datadoghq.com/kafka.check_names: '["kafka"]'
             ad.datadoghq.com/kafka.init_configs: '[{"is_jmx": true, "collect_default_metrics": true}]'
-            ad.datadoghq.com/kafka.instances: '[{"host": "%%host%%","port":"9999"}]'
+            ad.datadoghq.com/kafka.instances: '[{"host": "%%host%%","port":"9999", "min_collection_interval":"10"}]'
           labels:
             monitorMe: "yesPlease"
     jmxOptions: {}
