@@ -15,3 +15,5 @@ config:
 
 service:
   type: NodePort
+  nodePorts:
+    http: 30007
