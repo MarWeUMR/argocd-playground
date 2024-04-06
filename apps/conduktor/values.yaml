@@ -16,7 +16,7 @@ config:
   clusters:
     - id: my-cluster
       name: Strimzi
-      bootstrapServers: my-cluster-kafka-bootstrap:9092
+      bootstrapServers: my-cluster-kafka-plain-bootstrap.kafka:9092
 
 service:
   type: NodePort
