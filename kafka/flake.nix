@@ -50,6 +50,7 @@
         packages = [
           rye
           uv
+          go
           ];
       });
     });
