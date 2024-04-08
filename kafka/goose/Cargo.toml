@@ -1,0 +1,12 @@
+[package]
+name = "rust_kafka_loadtest"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+goose = "*"
+url = "*"
+tokio = { version = "*", features = ["full"] }
+rdkafka = { version = "*", features = ["cmake-build"] }

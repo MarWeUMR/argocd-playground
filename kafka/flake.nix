@@ -34,6 +34,7 @@
       default = pkgs.mkShell (with pkgs; {
         nativeBuildInputs = [
           clang
+          cmake
           # Use mold when we are runnning in Linux
           (lib.optionals stdenv.isLinux mold)
         ];
@@ -41,8 +42,8 @@
           rustToolchain.${pkgs.system}.default
           rust-analyzer-unwrapped
           cargo
-          # pkg-config
-          # openssl
+          pkg-config
+          openssl
         ];
         RUST_SRC_PATH = "${
           rustToolchain.${pkgs.system}.rust-src
