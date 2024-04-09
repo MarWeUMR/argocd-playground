@@ -11,7 +11,7 @@ spec:
         repoURL: https://github.com/MarWeUMR/argocd-playground
         revision: feat/kafka-traffic-generator
         directories:
-          - path: apps/kafka
+          - path: apps/kafka/*
           - path: apps/sealed-secrets
           - path: apps/monitoring
           - path: apps/conduktor
