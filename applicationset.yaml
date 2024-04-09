@@ -10,11 +10,9 @@ spec:
     - git:
         repoURL: https://github.com/MarWeUMR/argocd-playground
         revision: feat/kafka-traffic-generator
-        directories:
-          - path: apps/kafka/*
-          - path: apps/sealed-secrets
-          - path: apps/monitoring
-          - path: apps/conduktor
+        files:
+          - path: "apps/**/config.json"
+
   template:
     metadata:
       name: "{{ .path.basename }}"
@@ -28,7 +26,7 @@ spec:
           name: lovely # using 'argocd-lovely-plugin-v1.0' as suggested in the docs did not work
       destination:
         server: https://kubernetes.default.svc
-        namespace: "{{ .path.basename }}" # use helmfiles namespace definition if available
+        namespace: "{{ .namespace | default .path.basename }}" # use helmfiles namespace definition if available
       syncPolicy:
         automated:
           prune: true
