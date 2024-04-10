@@ -1,0 +1,101 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: guacamole-postgres
+  namespace: guacamole
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: guacamole-postgres
+  template:
+    metadata:
+      labels:
+        app: guacamole-postgres
+    spec:
+      initContainers:
+        - name: init-postgres
+          image: guacamole/guacamole
+          command:
+            [
+              "sh",
+              "-c",
+              "/opt/guacamole/bin/initdb.sh --postgresql > /tmp/initdb.sql",
+            ]
+          volumeMounts:
+            - name: init-postgres
+              mountPath: "/tmp"
+
+      containers:
+        - name: postgres
+          image: "postgres:14"
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 5432
+          envFrom:
+            - configMapRef:
+                name: guacamole-postgres-secret
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/data
+              name: guacamole-postgresdata
+            - mountPath: /docker-entrypoint-initdb.d
+              name: init-postgres
+      volumes:
+        - name: init-postgres
+          emptyDir: {}
+        - name: guacamole-postgresdata
+          persistentVolumeClaim:
+            claimName: guacamole-postgres-volume-claim
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: guacamole-postgres-volume
+  labels:
+    type: local
+    app: guacamole-postgres
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteMany
+  hostPath:
+    path: /data/guacamole_postgresql
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: guacamole-postgres-volume-claim
+  namespace: guacamole
+  labels:
+    app: guacamole-postgres
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 10Gi
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: guacamole-postgres-secret
+  namespace: guacamole
+data:
+  POSTGRES_DB: guacamole_db
+  POSTGRES_USER: guacamole_user
+  POSTGRES_PASSWORD: BadPassword@1
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: guacamole-postgres
+  namespace: guacamole
+spec:
+  ports:
+    - port: 5432
+      targetPort: 5432
+  selector:
+    app: guacamole-postgres

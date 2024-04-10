@@ -1,9 +1,0 @@
-repositories:
-  - name: truecharts
-    url: https://charts.truecharts.org
-
-releases:
-  - name: guacamole-release
-    namespace: guacamole
-    chart: truecharts/guacamole
-    version: "13.8.1"

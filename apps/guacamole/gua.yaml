@@ -1,0 +1,101 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: guacd
+  namespace: guacamole
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: guacd
+  template:
+    metadata:
+      labels:
+        app: guacd
+    spec:
+      containers:
+        - name: guacd
+          image: "guacamole/guacd"
+          ports:
+            - containerPort: 4822
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: guacamole-web
+  namespace: guacamole
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: guacamole-web
+  template:
+    metadata:
+      labels:
+        app: guacamole-web
+    spec:
+      initContainers:
+        - name: init-postgres
+          image: guacamole/guacamole
+          command:
+            [
+              "sh",
+              "-c",
+              "/opt/guacamole/bin/initdb.sh --postgresql > /tmp/initdb.sql",
+            ]
+          volumeMounts:
+            - name: init-postgres
+              mountPath: "/tmp"
+
+      containers:
+        - name: guacamole-web
+          image: "guacamole/guacamole"
+          ports:
+            - containerPort: 8080
+          env:
+            - name: GUACD_HOSTNAME
+              value: "guacd"
+            - name: GUACD_PORT
+              value: "4822"
+            - name: POSTGRESQL_DATABASE
+              value: guacamole_db
+            - name: POSTGRESQL_USER
+              value: guacamole_user
+            - name: POSTGRESQL_PASSWORD
+              value: BadPassword@1
+            - name: POSTGRESQL_HOSTNAME
+              value: "guacamole-postgres"
+
+          volumeMounts:
+            - mountPath: /docker-entrypoint-initdb.d
+              name: init-postgres
+      volumes:
+        - name: init-postgres
+          emptyDir: {}
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: guacd
+  namespace: guacamole
+spec:
+  ports:
+    - port: 4822
+      targetPort: 4822
+  selector:
+    app: guacd
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: guacamole-web
+  namespace: guacamole
+spec:
+  type: NodePort
+  ports:
+    - port: 8080
+      targetPort: 8080
+      nodePort: 30088 # Optional: specify a nodePort in the range allowed by your cluster if you want a specific port, otherwise, Kubernetes will allocate one for you.
+  selector:
+    app: guacamole-web
