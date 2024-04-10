@@ -1,0 +1,9 @@
+repositories:
+  - name: apache-guacamole
+    url: https://helm.guacamole.apache.org
+
+releases:
+  - name: guacamole-release
+    namespace: guacamole
+    chart: apache-guacamole/guacamole
+    version: "1.2.0"
