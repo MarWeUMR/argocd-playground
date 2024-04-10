@@ -1,9 +1,9 @@
 repositories:
-  - name: apache-guacamole
-    url: https://helm.guacamole.apache.org
+  - name: truecharts
+    url: https://charts.truecharts.org
 
 releases:
   - name: guacamole-release
     namespace: guacamole
-    chart: apache-guacamole/guacamole
-    version: "1.2.0"
+    chart: truecharts/guacamole
+    version: "13.8.1"
