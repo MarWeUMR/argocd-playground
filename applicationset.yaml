@@ -9,7 +9,7 @@ spec:
   generators:
     - git:
         repoURL: https://github.com/MarWeUMR/argocd-playground
-        revision: feat/guacamole
+        revision: guacamole
         files:
           - path: "apps/**/config.json"
 
