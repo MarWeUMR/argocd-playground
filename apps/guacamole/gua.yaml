@@ -96,6 +96,6 @@ spec:
   ports:
     - port: 8080
       targetPort: 8080
-      nodePort: 30088 # Optional: specify a nodePort in the range allowed by your cluster if you want a specific port, otherwise, Kubernetes will allocate one for you.
+      nodePort: 30088
   selector:
     app: guacamole-web
