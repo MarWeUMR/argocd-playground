@@ -65,3 +65,37 @@ spec:
         - name: script-volume
           configMap:
             name: kafka-producer-script
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kafka-producer-60sec
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kafka-producer
+  template:
+    metadata:
+      labels:
+        app: kafka-producer
+    spec:
+      containers:
+        - name: kafka-producer
+          image: bitnami/kafka
+          volumeMounts:
+            - name: script-volume
+              mountPath: /scripts
+          command: ["/bin/bash"]
+          args: ["/scripts/kafka-chit-chat.sh"]
+          env:
+            - name: TOPIC
+              value: "my-performance-test-60sec"
+            - name: NUM_RECORDS
+              value: "120"
+            - name: SLEEP_DURATION
+              value: "60"
+      volumes:
+        - name: script-volume
+          configMap:
+            name: kafka-producer-script
