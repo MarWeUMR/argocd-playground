@@ -2,6 +2,7 @@ prometheus:
   service:
     type: NodePort
   prometheusSpec:
+    enableRemoteWriteReceiver: true
     podMonitorSelector:
       matchLabels:
         monitorMe: "yesPlease"
