@@ -2,6 +2,10 @@ prometheus:
   service:
     type: NodePort
   prometheusSpec:
+    additionalScrapeConfigs:
+      - job_name: "ssh_tunnel_prometheus"
+        static_configs:
+          - targets: ["localhost:9091"]
     enableRemoteWriteReceiver: true
     podMonitorSelector:
       matchLabels:
