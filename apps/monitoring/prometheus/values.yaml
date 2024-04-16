@@ -5,7 +5,7 @@ prometheus:
     additionalScrapeConfigs:
       - job_name: "ssh_tunnel_prometheus"
         static_configs:
-          - targets: ["localhost:9091"]
+          - targets: ["127.0.0.1:9091"]
     enableRemoteWriteReceiver: true
     podMonitorSelector:
       matchLabels:
