@@ -2,10 +2,11 @@ prometheus:
   service:
     type: NodePort
   prometheusSpec:
-    additionalScrapeConfigs:
-      - job_name: "ssh_tunnel_prometheus"
-        static_configs:
-          - targets: ["127.0.0.1:9091"]
+    remoteWriteDashboards: true
+    # additionalScrapeConfigs:
+    #   - job_name: "ssh_tunnel_prometheus"
+    #     static_configs:
+    #       - targets: ["127.0.0.1:9091"]
     enableRemoteWriteReceiver: true
     podMonitorSelector:
       matchLabels:
