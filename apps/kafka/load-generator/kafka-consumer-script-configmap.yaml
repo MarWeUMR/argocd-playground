@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kafka-consumer-script
+data:
+  kafka-consumer.sh: |
+    #!/bin/bash
+
+    # Kafka topic to consume from
+    TOPIC="${TOPIC}"
+
+    # Consumer group ID
+    GROUP_ID="${GROUP_ID}"
+
+    # Kafka consumer properties
+    CONSUMER_PROPS="bootstrap.servers=my-cluster-kafka-plain-bootstrap.kafka:9092"
+
+    # Consume messages
+    kafka-console-consumer.sh --bootstrap-server "$CONSUMER_PROPS" --topic "$TOPIC" --group "$GROUP_ID" --from-beginning
+
+  kafka-consumer-slow.sh: |
+    #!/bin/bash
+
+    # Kafka topic to consume from
+    TOPIC="${TOPIC}"
+
+    # Consumer group ID
+    GROUP_ID="${GROUP_ID}"
+
+    # Kafka consumer properties
+    CONSUMER_PROPS="bootstrap.servers=my-cluster-kafka-plain-bootstrap.kafka:9092"
+
+    # Consume messages slowly
+    kafka-console-consumer.sh --bootstrap-server "$CONSUMER_PROPS" --topic "$TOPIC" --group "$GROUP_ID" --from-beginning | while read line; do
+      echo "$line"
+      sleep 2
+    done
+
