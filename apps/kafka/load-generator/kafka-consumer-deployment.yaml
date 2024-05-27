@@ -1,0 +1,128 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kafka-consumer-up-to-date-1sec
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kafka-consumer-up-to-date-1sec
+  template:
+    metadata:
+      labels:
+        app: kafka-consumer-up-to-date-1sec
+    spec:
+      containers:
+        - name: kafka-consumer
+          image: bitnami/kafka
+          volumeMounts:
+            - name: script-volume
+              mountPath: /scripts
+          command: ["/bin/bash"]
+          args: ["/scripts/kafka-consumer.sh"]
+          env:
+            - name: TOPIC
+              value: "my-performance-test-1sec"
+            - name: GROUP_ID
+              value: "my-consumer-group-up-to-date-1sec"
+      volumes:
+        - name: script-volume
+          configMap:
+            name: kafka-consumer-script
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kafka-consumer-up-to-date-30sec
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kafka-consumer-up-to-date-30sec
+  template:
+    metadata:
+      labels:
+        app: kafka-consumer-up-to-date-30sec
+    spec:
+      containers:
+        - name: kafka-consumer
+          image: bitnami/kafka
+          volumeMounts:
+            - name: script-volume
+              mountPath: /scripts
+          command: ["/bin/bash"]
+          args: ["/scripts/kafka-consumer.sh"]
+          env:
+            - name: TOPIC
+              value: "my-performance-test-30sec"
+            - name: GROUP_ID
+              value: "my-consumer-group-up-to-date-30sec"
+      volumes:
+        - name: script-volume
+          configMap:
+            name: kafka-consumer-script
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kafka-consumer-slow-1sec
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kafka-consumer-slow-1sec
+  template:
+    metadata:
+      labels:
+        app: kafka-consumer-slow-1sec
+    spec:
+      containers:
+        - name: kafka-consumer
+          image: bitnami/kafka
+          volumeMounts:
+            - name: script-volume
+              mountPath: /scripts
+          command: ["/bin/bash"]
+          args: ["/scripts/kafka-consumer-slow.sh"]
+          env:
+            - name: TOPIC
+              value: "my-performance-test-1sec"
+            - name: GROUP_ID
+              value: "my-consumer-group-slow-1sec"
+      volumes:
+        - name: script-volume
+          configMap:
+            name: kafka-consumer-script
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kafka-consumer-slow-30sec
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kafka-consumer-slow-30sec
+  template:
+    metadata:
+      labels:
+        app: kafka-consumer-slow-30sec
+    spec:
+      containers:
+        - name: kafka-consumer
+          image: bitnami/kafka
+          volumeMounts:
+            - name: script-volume
+              mountPath: /scripts
+          command: ["/bin/bash"]
+          args: ["/scripts/kafka-consumer-slow.sh"]
+          env:
+            - name: TOPIC
+              value: "my-performance-test-30sec"
+            - name: GROUP_ID
+              value: "my-consumer-group-slow-30sec"
+      volumes:
+        - name: script-volume
+          configMap:
+            name: kafka-consumer-script
+
