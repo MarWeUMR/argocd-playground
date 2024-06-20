@@ -6,7 +6,7 @@ releases:
   - name: datadog-release
     namespace: monitoring
     chart: datadog/datadog
-    version: "3.59.1"
+    version: "3.66.0"
     values:
       - datadog:
           apiKeyExistingSecret: datadog-api-key

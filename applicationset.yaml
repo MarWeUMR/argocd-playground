@@ -9,7 +9,7 @@ spec:
   generators:
     - git:
         repoURL: https://github.com/MarWeUMR/argocd-playground
-        revision: main
+        revision: feat/update-datadog
         files:
           - path: "apps/**/config.json"
 
