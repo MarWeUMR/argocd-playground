@@ -1,0 +1,24 @@
+config:
+  organization:
+    name: "playground"
+
+  admin:
+    email: "a@b.com"
+    password: "initial"
+
+  database:
+    host: "postgres"
+    username: "conduktor_user"
+    password: "conduktor_password"
+    port: 5432
+    name: "conduktor_db"
+
+  clusters:
+    - id: my-cluster
+      name: Strimzi
+      bootstrapServers: my-cluster-kafka-plain-bootstrap.kafka:9092
+
+service:
+  type: NodePort
+  nodePorts:
+    http: 30007

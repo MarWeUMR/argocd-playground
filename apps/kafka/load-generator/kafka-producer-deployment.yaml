@@ -1,0 +1,67 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kafka-producer-1sec
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kafka-producer
+  template:
+    metadata:
+      labels:
+        app: kafka-producer
+    spec:
+      containers:
+        - name: kafka-producer
+          image: bitnami/kafka
+          volumeMounts:
+            - name: script-volume
+              mountPath: /scripts
+          command: ["/bin/bash"]
+          args: ["/scripts/kafka-chit-chat.sh"]
+          env:
+            - name: TOPIC
+              value: "my-performance-test-1sec"
+            - name: NUM_RECORDS
+              value: "2"
+            - name: SLEEP_DURATION
+              value: "1"
+      volumes:
+        - name: script-volume
+          configMap:
+            name: kafka-producer-script
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kafka-producer-30sec
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kafka-producer
+  template:
+    metadata:
+      labels:
+        app: kafka-producer
+    spec:
+      containers:
+        - name: kafka-producer
+          image: bitnami/kafka
+          volumeMounts:
+            - name: script-volume
+              mountPath: /scripts
+          command: ["/bin/bash"]
+          args: ["/scripts/kafka-chit-chat.sh"]
+          env:
+            - name: TOPIC
+              value: "my-performance-test-30sec"
+            - name: NUM_RECORDS
+              value: "60"
+            - name: SLEEP_DURATION
+              value: "30"
+      volumes:
+        - name: script-volume
+          configMap:
+            name: kafka-producer-script

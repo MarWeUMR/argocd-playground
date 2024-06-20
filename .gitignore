@@ -1,3 +1,5 @@
 **/cert
 **/key
 **/age-key.txt
+kafka/kafka-locust/src/kafka_locust/__pycache__
+kafka/goose/target

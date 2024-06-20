@@ -1,0 +1,11 @@
+repositories:
+  - name: conduktor
+    url: https://helm.conduktor.io
+
+releases:
+  - name: conduktor-release
+    namespace: conduktor
+    chart: conduktor/console
+    version: "1.7.2"
+    values:
+      - values.yaml

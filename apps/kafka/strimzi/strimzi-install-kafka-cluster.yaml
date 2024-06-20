@@ -29,36 +29,9 @@ spec:
       pod:
         metadata:
           annotations:
-            ad.datadoghq.com/kafka.checks: |
-              {
-                "kafka": {
-                  "init_config": {
-                    "is_jmx": true,
-                    "collect_default_metrics": true,
-                    "conf": [
-                      {
-                        "include": {
-                          "domain": "kafka.server",
-                          "bean_regex": "kafka\\.server:type=BrokerTopicMetrics,name=MessagesInPerSec,topic=(.*?)(?:,|$)",
-                          "tags": { "topic": "$1" },
-                          "attribute": {
-                            "Value": {
-                              "alias": "kafka.topic.messages_in.rate",
-                              "metric_type": "count"
-                            }
-                          }
-                        }
-                      }
-                    ]
-                  },
-                  "instances": [
-                    {
-                      "host": "%%host%%",
-                      "port": "9999"
-                    }
-                  ]
-                }
-              }
+            ad.datadoghq.com/kafka.check_names: '["kafka"]'
+            ad.datadoghq.com/kafka.init_configs: '[{"is_jmx": true, "collect_default_metrics": true}]'
+            ad.datadoghq.com/kafka.instances: '[{"host": "%%host%%","port":"9999"}]'
           labels:
             monitorMe: "yesPlease"
     jmxOptions: {}
