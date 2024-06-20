@@ -9,13 +9,13 @@
 
 We need to bootstrap ArgoCD first with `kustomize`.
 Use `just bootstrap-argocd` for that.
-Then simple apply the `applicationset.yaml` manifest.
+Then simply apply the `applicationset.yaml` manifest.
 
 ```bash
 kubectl apply -k ./bootstrap/overlays/
 kubectl apply -f applicationset.yaml
 ```
 
-While boostrapping, the `sealed-secrets` secrets (cert/key) get decrypted.
+While bootstrapping, the `sealed-secrets` secrets (cert/key) get decrypted.
 These are used to generate the actual secret that is used by `sealed-secrets-controller` in the cluster.
 That ensures, that the actual `SealedSecret` resources can be used by kubernetes.
