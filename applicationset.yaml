@@ -21,7 +21,7 @@ spec:
       source:
         repoURL: https://github.com/MarWeUMR/argocd-playground
         path: "{{ .path.path }}"
-        targetRevision: main
+        targetRevision: feat/update-datadog
         plugin:
           name: lovely # using 'argocd-lovely-plugin-v1.0' as suggested in the docs did not work
       destination:
