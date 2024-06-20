@@ -9,7 +9,7 @@ spec:
   generators:
     - git:
         repoURL: https://github.com/MarWeUMR/argocd-playground
-        revision: feat/kafka-traffic-generator
+        revision: dont-merge/strimzi-kafka-update-test
         files:
           - path: "apps/**/config.json"
 
@@ -21,7 +21,7 @@ spec:
       source:
         repoURL: https://github.com/MarWeUMR/argocd-playground
         path: "{{ .path.path }}"
-        targetRevision: feat/kafka-traffic-generator
+        targetRevision: dont-merge/strimzi-kafka-update-test
         plugin:
           name: lovely # using 'argocd-lovely-plugin-v1.0' as suggested in the docs did not work
       destination:
