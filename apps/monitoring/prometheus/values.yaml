@@ -5,6 +5,12 @@ prometheus:
     podMonitorSelector:
       matchLabels:
         monitorMe: "yesPlease"
+
+prometheus-node-exporter:
+  hostRootFsMount:
+    enabled: false
+    mountPropagation: HostToContainer
+
 grafana:
   adminPassword: BadPassword@1
   service:
