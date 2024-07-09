@@ -6,4 +6,4 @@ releases:
   - name: strimzi-kafka-release
     namespace: kafka
     chart: strimzi/strimzi-kafka-operator
-    version: 0.40
+    version: 0.41
