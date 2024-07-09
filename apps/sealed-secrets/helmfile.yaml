@@ -6,4 +6,4 @@ releases:
   - name: sealed-secrets-release
     namespace: kube-system
     chart: sealed-secrets/sealed-secrets
-    version: "2.15.1"
+    version: "2.16.0"
